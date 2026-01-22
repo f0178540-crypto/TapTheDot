@@ -1,0 +1,4 @@
+enum PowerupType {
+  slowMo,
+  shield,
+}
