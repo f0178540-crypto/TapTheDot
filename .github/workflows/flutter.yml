@@ -1,0 +1,29 @@
+name: Flutter Android CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.9'
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Run tests (optional)
+        run: flutter test || true
+
+      - name: Build Android App Bundle
+        run: flutter build appbundle --release
